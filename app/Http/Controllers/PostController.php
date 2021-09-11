@@ -16,7 +16,12 @@ class PostController extends Controller
     public function index() {
         $posts = $this->postService->getLastPosts(6);
         $active_menu_item = '';
-        return view('welcome');
+        return view('main',
+            [
+                'posts' => $posts,
+                'active_menu_item' => $active_menu_item
+            ]
+        );
     }
     public function getAll() {
         $posts = $this->postService->getAllPosts(10);

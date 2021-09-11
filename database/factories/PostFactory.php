@@ -24,7 +24,7 @@ class PostFactory extends Factory
         return [
             'title'   => $this->faker->sentence(5),
             'description' =>  $this->faker->paragraph(4),
-            'slug' => $this->faker->sentence(1, false),
+            'slug' => $this->faker->regexify('[A-Za-z0-9]{20}')
         ];
     }
 }
