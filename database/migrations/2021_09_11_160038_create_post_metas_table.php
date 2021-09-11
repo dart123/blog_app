@@ -23,7 +23,7 @@ class CreatePostMetasTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->string('meta_key', 100);
+            $table->string('meta_key', 255);
             $table->unsignedBigInteger('meta_value')->default(0);
         });
     }
