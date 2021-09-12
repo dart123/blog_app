@@ -1,0 +1,40 @@
+.main__wrapper {
+    nav {
+        height: 64px;
+        .nav-link {
+            font: {
+                size: 20px;
+            }
+        }
+    }
+
+    .post_container {
+        margin-top: calc(3% + 64px);
+        .post_item {
+            border: 1px solid black;
+            padding-bottom: 15px;
+            .post_title {
+                height: 80px;
+            }
+            .post_img {
+
+            }
+            .post_descr {
+
+            }
+        }
+
+    }
+    .post_full {
+        margin-top: calc(3% + 64px);
+        .post_img {
+            max-height: 300px;
+        }
+        .submit_btn {
+            margin-top: 20px;
+        }
+    }
+    .pagination.row {
+        margin-top: 50px;
+    }
+}

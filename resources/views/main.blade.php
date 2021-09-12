@@ -3,33 +3,21 @@
 @section('title', 'Главная')
 
 @section('content')
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-        </ul>
-    </nav>
 
-    <table>
-        @foreach($posts as $post)
-            <tr>
-                <td><img src=""></td>
-            </tr>
-        @endforeach
-    </table>
+    @include('partials.nav_menu')
+
+    <div class="row post_container">
+        <div class="col-12">
+            @foreach($posts as $post)
+                @if($loop->iteration % 2 != 0)
+                    <div class="row">
+                        @include('post_list_item')
+                @else
+                    @include('post_list_item')
+                    </div>
+                @endif
+            @endforeach
+        </div>
+    </div>
+
 @endsection

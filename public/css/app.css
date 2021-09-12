@@ -1,5 +1,34 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 @charset "UTF-8";
+.main__wrapper nav {
+  height: 64px;
+}
+.main__wrapper nav .nav-link {
+  font-size: 20px;
+}
+.main__wrapper .post_container {
+  margin-top: calc(3% + 64px);
+}
+.main__wrapper .post_container .post_item {
+  border: 1px solid black;
+  padding-bottom: 15px;
+}
+.main__wrapper .post_container .post_item .post_title {
+  height: 80px;
+}
+.main__wrapper .post_full {
+  margin-top: calc(3% + 64px);
+}
+.main__wrapper .post_full .post_img {
+  max-height: 300px;
+}
+.main__wrapper .post_full .submit_btn {
+  margin-top: 20px;
+}
+.main__wrapper .pagination.row {
+  margin-top: 50px;
+}
+
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors

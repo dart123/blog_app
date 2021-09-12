@@ -2,7 +2,7 @@
 <html lang="ru">
 @include('base.head')
 <body>
-    <div class="main__wrapper">
+    <div class="main__wrapper container">
         @section('content')
         @show
     </div>

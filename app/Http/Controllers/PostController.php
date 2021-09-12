@@ -15,7 +15,7 @@ class PostController extends Controller
 
     public function index() {
         $posts = $this->postService->getLastPosts(6);
-        $active_menu_item = '';
+        $active_menu_item = 'main';
         return view('main',
             [
                 'posts' => $posts,
@@ -25,9 +25,24 @@ class PostController extends Controller
     }
     public function getAll() {
         $posts = $this->postService->getAllPosts(10);
+        $active_menu_item = 'catalog';
+        return view('post_list',
+            [
+                'posts' => $posts,
+                'active_menu_item' => $active_menu_item
+            ]
+        );
     }
 
     public function getSingle($slug) {
-
+        $post = $this->postService->getPostBySlug($slug);
+        $active_menu_item = 'catalog';
+        //return '<pre>'.print_r($post,true).'</pre>';
+        return view('post_single',
+            [
+                'post' => $post,
+                'active_menu_item' => $active_menu_item
+            ]
+        );
     }
 }
