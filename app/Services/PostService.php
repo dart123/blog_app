@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Models\Post;
+use Illuminate\Support\Facades\Log;
+use PHPUnit\Exception;
 
 class PostService
 {
@@ -21,32 +23,39 @@ class PostService
     }
 
     public function getPostBySlug($slug) {
-        $post = Post::where('slug', '=', $slug)->first();
-        $post_metas = $post->metas();
+        try {
+            $post = Post::where('slug', '=', $slug)->firstOrFail();
+            $post_metas = $post->metas();
 
-        $post_metas = $post_metas->select('meta_key', 'meta_value')
-            ->whereIn('meta_key', ['likes', 'views'])
-            ->get();
+            $post_metas = $post_metas->select('meta_key', 'meta_value')
+                ->whereIn('meta_key', ['likes', 'views'])
+                ->get();
 
-        $likes = $post_metas
-            ->first(function($item) {
-                return $item->meta_key == 'likes';
-            })
-            ->meta_value;
+            $likes = $post_metas
+                ->first(function($item) {
+                    return $item->meta_key == 'likes';
+                })
+                ->meta_value;
 
-        $views = $post_metas
-            ->first(function($item) {
-                return $item->meta_key == 'views';
-            })
-            ->meta_value;
+            $views = $post_metas
+                ->first(function($item) {
+                    return $item->meta_key == 'views';
+                })
+                ->meta_value;
 
-        $comments = $post->comments()
-            ->get();
-        return [
-            'info' => $post,
-            'likes' => $likes,
-            'views' => $views,
-            'comments' => $comments
-        ];
+            $comments = $post->comments()
+                ->get();
+            return [
+                'info' => $post,
+                'likes' => $likes,
+                'views' => $views,
+                'comments' => $comments
+            ];
+        }
+        catch (Exception $e) {
+            Log::error('Exception: '.$e->getMessage());
+            return false;
+        }
+
     }
 }

@@ -8,6 +8,7 @@
 
     <div class="row post_full">
         <div class="col-12">
+            <input id="post_id" type="hidden" name="post_id" value="{{$post['info']->id}}">
             <div class="row">
                 <h2 class="post_title col-12">
                     {{$post['info']->title}}
@@ -37,7 +38,7 @@
                     </div>
                 </div>
 
-                <p class="col-6">Просмотров: {{$post['views']}}</p>
+                <p class="col-6">Просмотров: <span class="view_cnt">{{$post['views']}}</span></p>
             </div>
 
             <div class="row">
@@ -59,4 +60,19 @@
         </div>
     </div>
 
+@endsection
+
+@section('footer_scripts')
+    <script>
+        $(document).ready(function() {
+            window.setTimeout(function () {
+                increment_meta('/api/add_view', function(data) {
+                    console.log(data);
+                    var response = JSON.parse(data);
+                    if (typeof response === 'number')
+                        $('.view_cnt').text(data);
+                });
+            }, 5000 );
+        });
+    </script>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\PostService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class PostController extends Controller
 {
@@ -36,6 +37,11 @@ class PostController extends Controller
 
     public function getSingle($slug) {
         $post = $this->postService->getPostBySlug($slug);
+        if (!$post)
+        {
+            App::abort(404);
+        }
+
         $active_menu_item = 'catalog';
         //return '<pre>'.print_r($post,true).'</pre>';
         return view('post_single',
