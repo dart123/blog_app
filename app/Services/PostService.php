@@ -52,7 +52,7 @@ class PostService
                 'comments' => $comments
             ];
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
             Log::error('Exception: '.$e->getMessage());
             return false;
         }
